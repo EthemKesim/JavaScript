@@ -1,7 +1,7 @@
 const employees = [
-    { id: 1, name: 'John', age: 30, department: 'IT', salary: 50000},
-    { id: 2, name: 'Alice', age: 28, department: 'HR', salary: 45000},
-    { id: 3, name: 'Bob', age: 35, department: 'Finance', salary: 60000},
+    { id: 1, name: 'John', age: 30, department: 'IT', salary: 50000, specialization: 'JavaScript'},
+    { id: 2, name: 'Alice', age: 28, department: 'HR', salary: 45000, specialization: 'Python' },
+    { id: 3, name: 'Bob', age: 35, department: 'Finance', salary: 60000, specialization: 'Java'},
 
 ];
 
@@ -30,4 +30,22 @@ function findEmployeeById(employeeId) {
      }
  }
 
- 
+ function findEmployeeJavaScript() {
+    const employeeSpec = 'JavaScript';  // Aranacak specialization
+  
+    // employees dizisinden specialization JavaScript olanları filtrele
+    const foundEmployees = employees.filter(employee => employee.specialization === employeeSpec);
+  
+    const displayDiv = document.getElementById('employeesDetails');
+  
+    if (foundEmployees.length > 0) {
+      // Bulunanları liste halinde göster
+      let html = '';
+      foundEmployees.forEach(employee => {
+        html += `<p>${employee.id}: ${employee.name} - ${employee.specialization} - ${employee.department} - $${employee.salary}</p>`;
+      });
+      displayDiv.innerHTML = html;
+    } else {
+      displayDiv.innerHTML = 'No employee has been found with this specialization';
+    }
+  }
